@@ -117,12 +117,6 @@ class WordsmithService extends Component
 		'ordinalize' => [
 			'source' => 'Inflector', 'category' => 'inflection'
 		],
-		'parsedown' => [
-			'source' => 'internal', 'category' => 'markdown', 'is_safe' => ['html']
-		],
-		'parsedownExtra' => [
-			'source' => 'internal', 'category' => 'markdown', 'is_safe' => ['html']
-		],
 		'parseName' => [
 			'source' => 'FullNameParser', 'category' => 'names'
 		],
@@ -681,21 +675,8 @@ class WordsmithService extends Component
 	public function markdown($s, $flavor = 'gfm', $inlineOnly = false): string
 	{
 
-		// If flavor is 'extra' we're looking for Parsedown
 
-		if ($flavor == 'extra')
-		{
-
-			if ($inlineOnly)
-			{
-				return (new \ParsedownExtra())->line($s);
-			}
-			else
-			{
-				return (new \ParsedownExtra())->text($s);
-			}
-
-		}
+		
 
 		// Otherwise, use Craft's built-in Yii-powered parser
 
@@ -749,29 +730,9 @@ class WordsmithService extends Component
 		return Inflector::get()->ordinalize($num);
 	}
 
-	/**
-	 * Alias for `markdown()` using the 'gfm' flavor.
-	 *
-	 * @param $s
-	 * @param bool $inlineOnly
-	 * @return string
-	 */
-	public function parsedown($s, $inlineOnly = false): string
-	{
-		return $this->markdown($s, 'gfm', $inlineOnly);
-	}
+	
 
-	/**
-	 * Alias for `markdown()` using the 'extra' flavor.
-	 *
-	 * @param $s
-	 * @param bool $inlineOnly
-	 * @return string
-	 */
-	public function parsedownExtra($s, $inlineOnly = false): string
-	{
-		return $this->markdown($s, 'extra', $inlineOnly);
-	}
+	
 
 	/**
 	 * Attempts to parse a string as a name and returns its component parts (i.e. firstName, lastName, etc.)
@@ -829,17 +790,7 @@ class WordsmithService extends Component
 
 	}
 
-	/**
-	 * Alias for `parsedownExtra()`
-	 *
-	 * @param $s
-	 * @param bool $inlineOnly
-	 * @return string
-	 */
-	public function pde($s, $inlineOnly = false): string
-	{
-		return $this->parsedownExtra($s, $inlineOnly);
-	}
+	
 
 	/**
 	 * Alias for `upperCamelize()`

@@ -24,7 +24,6 @@
     "require": {
         "craftcms/cms": "^4.5",
         "davechild/textstatistics": "^1.0.3",
-        "erusev/parsedown-extra": "^0.8",
         "icanboogie/inflector": "^2.0",
         "mofodojodino/profanity-filter": "^1.3",
         "mundschenk-at/php-typography": "^6.0",
